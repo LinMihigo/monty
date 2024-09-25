@@ -3,7 +3,7 @@
 This project is written in C
 
 ### Compilation
-This project is compiled as follows:
+This project is compiled so:
 ```bash
 gcc -Wall -Werror -Wextra -pedantic -std=c89 *.c -o monty
 ```

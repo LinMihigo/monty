@@ -9,22 +9,24 @@
 int main(int ac, char **av)
 {
 	FILE *file;
-	instruction_t list;
+	char line[128];
 
-	/* TODO: Need to read file received as an arg to the exec */
+	if (ac != 2)
+	{
+		fprintf(stderr, "USAGE: monty file\n");
+		exit(EXIT_FAILURE);
+	}
+
 	file = fopen(av[1], "r");
 	if (file == NULL)
 	{
-		dprintf(STDERR_FILENO, "Error: Can't open file %s\n", av[1]);
+		fprintf(stderr, "Error: Can't open file %s\n", av[1]);
 		exit(EXIT_FAILURE);
 	}
-	if (ac != 2)
+	while (fgets(line, sizeof(line), file))
 	{
-		dprintf(STDERR_FILENO, "USAGE: monty file");
-		exit(EXIT_FAILURE);
+		printf("%s\n", line);
 	}
-	printf("%s\n", av[1]);
-	fclose(file);
-
+	
 	return (0);
 }
