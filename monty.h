@@ -76,11 +76,15 @@ void free_globv(void);
 int is_all_digits(char *string);
 
 /* opcode_funcs.c */
-void pall(stack_t **stack, int line_num);
-void push(stack_t **stack, int line_num);
-void pint(stack_t **stack, int line_num);
-void pop(stack_t **stack, int line_num);
-void swap(stack_t **stack, int line_num);
+void _pall(stack_t **stack, int line_num);
+void _push(stack_t **stack, int line_num);
+void _pint(stack_t **stack, int line_num);
+void _pop(stack_t **stack, int line_num);
+void _swap(stack_t **stack, int line_num);
+
+/* opcode_funcs2.c */
+void _add(stack_t **stack, int line_num);
+void _nop(stack_t **stack, int line_num);
 
 ssize_t _getline(char **lineptr, size_t *n, FILE *stream);
 

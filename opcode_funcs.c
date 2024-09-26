@@ -1,10 +1,10 @@
 #include "monty.h"
 /**
- * pall - Print list
- * @stack: Double linked list
- * @line_num: File line execution
+ * _pall - Print the stack/queue
+ * @stack: The doubly linked list
+ * @line_num: Current line in file
  */
-void pall(stack_t **stack, int line_num)
+void _pall(stack_t **stack, int line_num)
 {
 	stack_t *tmp = *stack;
 	(void) line_num;
@@ -19,11 +19,11 @@ void pall(stack_t **stack, int line_num)
 }
 
 /**
- * push - Insert a new value in list
+ * _push - Insert a new value in the stack or queue
  * @stack: Double linked list
- * @line_num: File line execution
+ * @line_num: Current line in file
  */
-void push(stack_t **stack, int line_num)
+void _push(stack_t **stack, int line_num)
 {
 	stack_t *tmp = NULL, *tm = *stack;
 	char *num;
@@ -62,11 +62,11 @@ void push(stack_t **stack, int line_num)
 }
 
 /**
- * pint - Print last node
+ * _pint - Print the last added node
  * @stack: Double linked list
- * @line_num: File line execution
+ * @line_num: Current line in file
  */
-void pint(stack_t **stack, int line_num)
+void _pint(stack_t **stack, int line_num)
 {
 	if (!*stack)
 	{
@@ -78,11 +78,11 @@ void pint(stack_t **stack, int line_num)
 }
 
 /**
-* pop - Delete top of list
+* _pop - Delete an item form the top of the list
 * @stack: Double linked list
-* @line_num: File line execution
+* @line_num: Current line in file
 */
-void pop(stack_t **stack, int line_num)
+void _pop(stack_t **stack, int line_num)
 {
 	stack_t *tmp;
 
@@ -102,11 +102,11 @@ void pop(stack_t **stack, int line_num)
 
 
 /**
- * swap - Delete top of list
+ * _swap - Delete top of list
  * @stack: Double linked list
- * @line_num: File line execution
+ * @line_num: Current line in file
  */
-void swap(stack_t **stack, int line_num)
+void _swap(stack_t **stack, int line_num)
 {
 	int tmp;
 

@@ -27,17 +27,14 @@ int main(int ac, char **av)
 		exit(EXIT_FAILURE);
 	}
 
-	while (_getline(&globv.line, &globv.line_len, globv.file) != -1)
+	while (_getline(&globv.line, &globv.line_len, globv.file) != EOF)
 	{
 		opcode = strtok(globv.line, " \t\n");
 
-		if (opcode)
+		if (opcode && func_caller(&globv, opcode) == 1)
 		{
-			if (func_caller(&globv, opcode) == 1)
-			{
-				free_globv();
-				return (1);
-			}
+			free_globv();
+			return (1);
 		}
 		globv.line_num++;
 	}

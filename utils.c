@@ -24,18 +24,21 @@ int globv_init(globv_t *globv)
 */
 instruction_t *opcode_handler(void)
 {
-	instruction_t *ptr = malloc(sizeof(instruction_t) * 5);
+	instruction_t *ptr = malloc(sizeof(instruction_t) * 8);
 
 	if (!ptr)
 	{
 		fprintf(stderr, "Error: malloc failed\n");
 		return (NULL);
 	}
-	ptr[0].opcode = "pall", ptr[0].f = pall;
-	ptr[1].opcode = "push", ptr[1].f = push;
-	ptr[2].opcode = "pint", ptr[2].f = pint;
-	ptr[3].opcode = "pop", ptr[3].f = pop;
-	ptr[4].opcode = "swap", ptr[4].f = swap;
+	ptr[0].opcode = "pall", ptr[0].f = _pall;
+	ptr[1].opcode = "push", ptr[1].f = _push;
+	ptr[2].opcode = "pint", ptr[2].f = _pint;
+	ptr[3].opcode = "pop", ptr[3].f = _pop;
+	ptr[4].opcode = "swap", ptr[4].f = _swap;
+	ptr[5].opcode = "add", ptr[5].f = _add;
+	ptr[6].opcode = "nop", ptr[6].f = _nop;
+	ptr[7].opcode = NULL, ptr[7].f = NULL;
 
 	return (ptr);
 }
@@ -92,8 +95,8 @@ void free_globv(void)
 }
 
 /**
- * is_all_digits - Clean all program mallocs
- * @string: Num to validate
+ * is_all_digits - checks if string is all digits
+ * @string: String to check
  * Return: 0 Success, 1 Failed
  */
 int is_all_digits(char *string)
