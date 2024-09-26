@@ -1,9 +1,17 @@
 #ifndef MONTY_H
 #define MONTY_H
 
+#define _GNU_SOURCE
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <unistd.h>
+#include <sys/stat.h>
+#include <sys/types.h>
+#include <sys/uio.h>
+#include <errno.h>
+#include <fcntl.h>
+#include <ctype.h>
 
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
@@ -21,7 +29,6 @@ typedef struct stack_s
 	struct stack_s *next;
 } stack_t;
 
-
 /**
  * struct instruction_s - opcode and its function
  * @opcode: the opcode
@@ -33,9 +40,46 @@ typedef struct stack_s
 typedef struct instruction_s
 {
 	char *opcode;
-	void (*f)(stack_t **stack, unsigned int line_number);
+	void (*f)(stack_t **stack, int line_num);
 } instruction_t;
 
-int main(int ac, char **av);
+/**
+ * struct globv_s - struct to hold global variables
+ * @file: file to open
+ * @line: buffer to hold the line of opcode
+ * @line_len: line of opcode len
+ * @dict: opcode - function reference object
+ * @head: head node of the stack
+ * @line_num: current line in file
+ * @MODE: stack/Queue config
+ *
+ * Description: globv
+ */
+typedef struct globv_s
+{
+	FILE *file;
+	char *line;
+	size_t line_len;
+	instruction_t *dict;
+	stack_t *head;
+	int line_num;
+	int MODE;
+} globv_t;
+
+extern globv_t globv;
+
+/* utils.c */
+int globv_init(globv_t *globv);
+instruction_t *opcode_handler(void);
+int func_caller(globv_t *globv, char *opcode);
+void free_globv(void);
+int is_integer(const char *str);
+
+/* opcode_funcs.c */
+void pall(stack_t **stack, int line_num);
+void push(stack_t **stack, int line_num);
+void pint(stack_t **stack, int line_num);
+void pop(stack_t **stack, int line_num);
+void swap(stack_t **stack, int line_num);
 
 #endif /* MONTY_H */
