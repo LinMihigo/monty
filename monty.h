@@ -1,9 +1,9 @@
 #ifndef MONTY_H
 #define MONTY_H
 
-#define _GNU_SOURCE
 #include <stdio.h>
 #include <stdlib.h>
+#include <stddef.h>
 #include <string.h>
 #include <unistd.h>
 #include <sys/stat.h>
@@ -66,14 +66,14 @@ typedef struct globv_s
 	int MODE;
 } globv_t;
 
-extern globv_t globv;
+globv_t globv;
 
 /* utils.c */
 int globv_init(globv_t *globv);
 instruction_t *opcode_handler(void);
 int func_caller(globv_t *globv, char *opcode);
 void free_globv(void);
-int is_integer(const char *str);
+int is_all_digits(char *string);
 
 /* opcode_funcs.c */
 void pall(stack_t **stack, int line_num);
@@ -81,5 +81,7 @@ void push(stack_t **stack, int line_num);
 void pint(stack_t **stack, int line_num);
 void pop(stack_t **stack, int line_num);
 void swap(stack_t **stack, int line_num);
+
+ssize_t _getline(char **lineptr, size_t *n, FILE *stream);
 
 #endif /* MONTY_H */

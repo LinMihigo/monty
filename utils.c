@@ -24,7 +24,7 @@ int globv_init(globv_t *globv)
 */
 instruction_t *opcode_handler(void)
 {
-	instruction_t *ptr = malloc(sizeof(instruction_t) * 18);
+	instruction_t *ptr = malloc(sizeof(instruction_t) * 5);
 
 	if (!ptr)
 	{
@@ -50,12 +50,6 @@ int func_caller(globv_t *globv, char *opcode)
 {
 	int i;
 
-	if (strlen(opcode) != 0 && opcode[0] != '#')
-	{
-		fprintf(stderr, "L%d: unknown instruction %s\n", globv->line_num, opcode);
-		return (1);
-	}
-
 	for (i = 0; globv->dict[i].opcode; i++)
 	{
 		if (strcmp(opcode, globv->dict[i].opcode) == 0)
@@ -65,6 +59,12 @@ int func_caller(globv_t *globv, char *opcode)
 			globv->dict[i].f(&globv->head, globv->line_num);
 			return (0);
 		}
+	}
+
+	if (strlen(opcode) != 0 && opcode[0] != '#')
+	{
+		fprintf(stderr, "L%d: unknown instruction %s\n", globv->line_num, opcode);
+		return (1);
 	}
 	return (0);
 }
@@ -92,20 +92,20 @@ void free_globv(void)
 }
 
 /**
-* is_integer - check if isdigit
-* @str: string to check
-* Return: 0 - Success | 1 - Failure
-*/
-int is_integer(const char *str)
+ * is_all_digits - Clean all program mallocs
+ * @string: Num to validate
+ * Return: 0 Success, 1 Failed
+ */
+int is_all_digits(char *string)
 {
-	if (*str == '-')
-		str++;
-	while (*str)
+	char *ptr = string;
+
+	while (*ptr != '\0')
 	{
-		if (!isdigit(*str))
-			return (0);
-		str++;
+		if (*ptr < '0' || *ptr > '9')
+			return (1);
+		ptr++;
 	}
 
-	return (1);
+	return (0);
 }

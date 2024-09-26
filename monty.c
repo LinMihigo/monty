@@ -1,7 +1,5 @@
 #include "monty.h"
 
-globv_t globv;
-
 /**
 * main - main func
 * @ac: num of args received the monty executable
@@ -28,13 +26,13 @@ int main(int ac, char **av)
 		free_globv();
 		exit(EXIT_FAILURE);
 	}
-	while (getline(&globv.line, &globv.line_len, globv.file) != EOF)
+
+	while (_getline(&globv.line, &globv.line_len, globv.file) != -1)
 	{
 		opcode = strtok(globv.line, " \t\n");
 
 		if (opcode)
 		{
-			printf("opcode: %s", opcode);
 			if (func_caller(&globv, opcode) == 1)
 			{
 				free_globv();

@@ -29,7 +29,7 @@ void push(stack_t **stack, int line_num)
 	char *num;
 
 	num = strtok(NULL, " \r\t\n");
-	if (num == NULL || (is_integer(num) != 0 && num[0] != '-'))
+	if (num == NULL || (is_all_digits(num) != 0 && num[0] != '-'))
 	{
 		fprintf(stderr, "L%u: usage: push integer\n", line_num);
 		free_globv();
