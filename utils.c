@@ -24,7 +24,7 @@ int globv_init(globv_t *globv)
 */
 instruction_t *opcode_handler(void)
 {
-	instruction_t *ptr = malloc(sizeof(instruction_t) * 8);
+	instruction_t *ptr = malloc(sizeof(instruction_t) * 11);
 
 	if (!ptr)
 	{
@@ -38,7 +38,10 @@ instruction_t *opcode_handler(void)
 	ptr[4].opcode = "swap", ptr[4].f = _swap;
 	ptr[5].opcode = "add", ptr[5].f = _add;
 	ptr[6].opcode = "nop", ptr[6].f = _nop;
-	ptr[7].opcode = NULL, ptr[7].f = NULL;
+	ptr[7].opcode = "sub", ptr[7].f = _sub;
+	ptr[8].opcode = "div", ptr[8].f = _div;
+	ptr[9].opcode = "mul", ptr[9].f = _mul;
+	ptr[10].opcode = NULL, ptr[10].f = NULL;
 
 	return (ptr);
 }

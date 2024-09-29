@@ -20,7 +20,7 @@ void _pall(stack_t **stack, int line_num)
 
 /**
  * _push - Insert a new value in the stack or queue
- * @stack: Double linked list
+ * @stack: The doubly linked list
  * @line_num: Current line in file
  */
 void _push(stack_t **stack, int line_num)
@@ -62,8 +62,8 @@ void _push(stack_t **stack, int line_num)
 }
 
 /**
- * _pint - Print the last added node
- * @stack: Double linked list
+ * _pint - Print the node inserted last
+ * @stack: The doubly linked list
  * @line_num: Current line in file
  */
 void _pint(stack_t **stack, int line_num)
@@ -78,8 +78,8 @@ void _pint(stack_t **stack, int line_num)
 }
 
 /**
-* _pop - Delete an item form the top of the list
-* @stack: Double linked list
+* _pop - Delete an item form the top of the stack
+* @stack: The doubly linked list
 * @line_num: Current line in file
 */
 void _pop(stack_t **stack, int line_num)
@@ -102,8 +102,8 @@ void _pop(stack_t **stack, int line_num)
 
 
 /**
- * _swap - Delete top of list
- * @stack: Double linked list
+ * _swap - Switch first and second nodes in the stack/queue
+ * @stack: The doubly linked list
  * @line_num: Current line in file
  */
 void _swap(stack_t **stack, int line_num)

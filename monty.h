@@ -85,7 +85,11 @@ void _swap(stack_t **stack, int line_num);
 /* opcode_funcs2.c */
 void _add(stack_t **stack, int line_num);
 void _nop(stack_t **stack, int line_num);
+void _sub(stack_t **stack, int line_num);
+void _div(stack_t **stack, int line_num);
+void _mul(stack_t **stack, int line_num);
 
+/* getline.c */
 ssize_t _getline(char **lineptr, size_t *n, FILE *stream);
 
 #endif /* MONTY_H */
